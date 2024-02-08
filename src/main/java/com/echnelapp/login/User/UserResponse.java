@@ -8,7 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class UserResponse {
     String message;
+
+    public UserResponse(String message) {
+        this.message = message;
+    }
 }

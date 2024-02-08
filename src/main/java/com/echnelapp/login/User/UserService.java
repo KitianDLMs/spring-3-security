@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Transactional
     public UserResponse updateUser(UserRequest userRequest) {

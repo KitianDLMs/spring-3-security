@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @CrossOrigin(origins = {"http://localhost:4200"})
 public class UserController {
-    private final UserService userService;
+    private UserService userService;
 
     @GetMapping(value = "{id}")
     public ResponseEntity<UserDTO> getUser(@PathVariable Integer id) {
