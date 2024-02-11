@@ -1,7 +1,5 @@
-package com.echnelapp.login.config;
+package com.dlms.demojwt.Config;
 
-import com.echnelapp.login.User.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +11,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.dlms.demojwt.User.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
@@ -20,14 +22,16 @@ public class ApplicationConfig {
     private final UserRepository userRepository;
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception
+    {
         return config.getAuthenticationManager();
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailService(userRepository));
+    public AuthenticationProvider authenticationProvider()
+    {
+        DaoAuthenticationProvider authenticationProvider= new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userDetailService());
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
@@ -38,9 +42,9 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailService(UserRepository userRepository) {
-        return username -> userRepository.findByusername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("user not found"));
-
+    public UserDetailsService userDetailService() {
+        return username -> userRepository.findByUsername(username)
+        .orElseThrow(()-> new UsernameNotFoundException("User not fournd"));
     }
+
 }

@@ -1,4 +1,4 @@
-package com.echnelapp.login.auth;
+package com.dlms.demojwt.Auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,13 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthResponse {
-    String token;
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
+    String token; 
 }
